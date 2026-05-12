@@ -18,18 +18,18 @@ const AddRecipe = () => {
   const status = useSelector((state) => state.recipes.status);
 
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
   const [categories, setCategories] = useState("");
   const [ingredients, setIngredients] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const newRecipe = {
         title: title.trim(),
-        description: description.trim(),
         categories: categories.split(",").map((c) => c.trim()),
         ingredients: ingredients.split(",").map((i) => i.trim()),
+        description: description.trim(),
       };
 
       // Asynchrones Hinzufügen des Rezepts via Redux Thunk
@@ -60,12 +60,6 @@ const AddRecipe = () => {
           className="w-full border p-2 rounded"
           required
         />
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Beschreibung"
-          className="w-full border p-2 rounded"
-        />
         <input
           type="text"
           value={categories}
@@ -78,6 +72,12 @@ const AddRecipe = () => {
           value={ingredients}
           onChange={(e) => setIngredients(e.target.value)}
           placeholder="Zutaten (kommagetrennt)"
+          className="w-full border p-2 rounded"
+        />
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Beschreibung"
           className="w-full border p-2 rounded"
         />
         <button
