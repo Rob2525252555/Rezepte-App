@@ -1,13 +1,21 @@
 # Rezepte-App
 
-## Beschreibung
-Eine React-App mit Node/Express Backend und MongoDB,
-um Rezepte zu speichern, zu bearbeiten und Favoriten zu markieren.
+Eine Full-Stack-Anwendung mit React, Node/Express und MongoDB.
+Rezepte können gespeichert, bearbeitet, gelöscht und als Favorit markiert werden.
 
-## Technologien
-**Frontend**: React, Redux Toolkit, React Router, TailwindCSS, Vite
+## Screenshots
 
-**Backend**: Node.js, Express, MongoDB, Mongoose
+Rezeptliste
+![Rezeptliste](docs\screenshots\Rezeptliste.png)
+
+Favoritenliste
+![Favoritenliste](docs\screenshots\Favoritenliste.png)
+
+Detailansicht
+![Detailansicht](docs\screenshots\Detailansicht.png)
+
+Rezept hinzufügen
+![Rezept-hinzufuegen](docs\screenshots\Rezept-hinzufuegen.png)
 
 ## Features
 - Rezepte erstellen, bearbeiten, löschen
@@ -15,80 +23,126 @@ um Rezepte zu speichern, zu bearbeiten und Favoriten zu markieren.
 - Suche & Filter nach Titel, Beschreibung, Kategorien, Zutaten
 - Fehleranzeigen bei Netzwerkproblemen oder fehlgeschlagenen Requests
 
-## Hinweise
-- `.env` ist nicht im Repo enthalten
-- Node.js >= 18 empfohlen
+## Tech-Stack
 
+### Frontend
+- React
+- Redux Toolkit
+- React Router 
+- TailwindCSS
+- Vite
+
+### Backend
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+
+## Projektstruktur
+```
+Rezepte-App/
+│
+├── backend/  
+│   │
+│   ├── server.js       # stellt CRUD-Endpunkte für Rezepte bereit
+│   │                   # verbindet sich mit MongoDB (Mongoose)
+│   └── models/
+│       └── Recipe.js   # Mongoose Datenmodell
+│                       # definiert Struktur eines Rezepts
+└── frontend/
+    │
+    ├── index.html
+    │
+    └── src/
+        │
+        ├── App.jsx
+        ├── main.jsx
+        │
+        ├── components/
+        ├── layout/
+        ├── pages/
+        └── redux/
+```
 ## Datenbank / MongoDB Atlas Hinweis
-*(Dieser Schritt kann übersprungen werden, falls bereits eine MongoDB-URI vorhanden ist. Bei Installation fortfahren!)* 
+*(Dieser Schritt kann übersprungen werden, falls bereits eine MongoDB-URI vorhanden ist. Bei "Installation und Start" fortfahren!)* 
 - Damit die App funktioniert, muss jeder Nutzer einen eigenen MongoDB Atlas Account erstellen.
-- In MongoDB Atlas:
+### In MongoDB Atlas:
 
-        1. Projekt erstellen
+1. Projekt erstellen
 
-        2. Cluster erstellen (z. B. free tier reicht).
+2. Cluster erstellen (z. B. free tier reicht).
 
-        3. Einen Datenbankbenutzer anlegen.
+3. Einen Datenbankbenutzer anlegen.
 
-        4. Das Passwort dieses Benutzers kopieren.
+4. Das Passwort dieses Benutzers kopieren.
 
-        5. Die eigene MongoDB-URI in die .env Datei eintragen (basierend auf .env.example):
+5. Die eigene MongoDB-URI in die .env Datei eintragen (basierend auf .env.example):
 
-- MongoDB-URI:
+### MongoDB-URI:
 
-        1. Die URI bekommen Sie direkt aus Atlas, sobald Sie ein Cluster erstellt haben:
+1. Die URI bekommen Sie direkt aus Atlas, sobald Sie ein Cluster erstellt haben:
 
-        2. Einloggen in MongoDB Atlas → Cluster auswählen.
+2. Einloggen in MongoDB Atlas → Cluster auswählen.
 
-        3. Klicken Sie auf "Connect" beim gewünschten Cluster.
+3. Klicken Sie auf "Connect" beim gewünschten Cluster.
 
-        4. Wählen Sie „Connect your application“ (nicht MongoDB Compass oder VS Code).
+4. Wählen Sie „Connect your application“ oder „Driver" (nicht MongoDB Compass oder VS Code).
 
-        5. Dort sehen Sie die URI in etwa so:
+5. Dort sehen Sie die URI in etwa so:
 
-        mongodb+srv://username:password@clustername.mongodb.net/dbname?retryWrites=true&w=majority&appName=yourapp
+mongodb+srv://username:password@clustername.mongodb.net/dbname?retryWrites=true&w=majority&appName=yourapp
 
-        `username` → der Name des Datenbankbenutzers, den Sie in Atlas angelegt haben
+`username` → der Name des Datenbankbenutzers, den Sie in Atlas angelegt haben
 
-        `password` → das Passwort, das Sie dem Benutzer bei der Anlage gegeben haben
+`password` → das Passwort, das Sie dem Benutzer bei der Anlage gegeben haben
 
-        `clustername` → der Name Ihres Clusters
+`clustername` → der Name Ihres Clusters
 
-        `dbname` → Name Ihrer Datenbank 
+`dbname` → Name Ihrer Datenbank 
 
-        `yourapp` → name Ihrer App
+`yourapp` → name Ihrer App
 
 
-- Datenbank-Benutzer anlegen
+### Datenbank-Benutzer anlegen
 
-        SECURITY -> klicken Sie auf Database & Network Access  (links im Menü)
+SECURITY -> klicken Sie auf Database & Network Access  (links im Menü)
 
-        Klicken Sie auf Add New Database User
+Klicken Sie auf Add New Database User
 
-        Wählen Sie einen Benutzernamen
+Wählen Sie einen Benutzernamen
 
-        Wählen Sie ein Passwort 
+Wählen Sie ein Passwort 
 
-        Klicken Sie auf Add User
+Klicken Sie auf Add User
 
-        Benutzername und Passwort merken – beides wird später für die URI benötigt.
+Benutzername und Passwort merken – beides wird später für die URI benötigt.
 
-- IP-Zugriff erlauben
+### IP-Zugriff erlauben
 
-        Damit Ihre lokale App auf Atlas zugreifen kann:
+Damit Ihre lokale App auf Atlas zugreifen kann:
 
-        Gehen Sie auf "Database & Network Access"
+Gehen Sie auf "Database & Network Access"
 
-        Gehen Sie zu "IP Access List" → Add IP Address
+Gehen Sie zu "IP Access List" → Add IP Address
 
-        Option: 0.0.0.0/0 → erlaubt Zugriff von allen IPs 
-        oder die eigene aktuelle IP eingeben → Zugriff nur vom eigenen Rechner
+Option: 0.0.0.0/0 → erlaubt Zugriff von allen IPs 
+oder die eigene aktuelle IP eingeben → Zugriff nur vom eigenen Rechner
 
-## Installation
-    Repository klonen:
-    git clone git@github.com:Rob2525252555/Rezepte-App.git
+## Installation und Start
 
-    Dependencies installieren:
+### Vorraussetzungen
+
+Node.js >= 18 empfohlen
+
+### Projekt herunterladen:
+
+git clone git@github.com:Rob2525252555/Rezepte-App.git
+
+### .env erstellen
+
+Im Ordner "backend" die Datei ".env" erstellen basierend auf ".env.example"
+
+### Dependencies installieren:
 
     Backend:
     cd Rezepte-App
@@ -99,15 +153,13 @@ um Rezepte zu speichern, zu bearbeiten und Favoriten zu markieren.
     cd Rezepte-App
     cd frontend
     npm install
-   
-    Im backend Ordner ".env" erstellen basierend auf ".env.example"
 
-## Backend starten
+### Backend starten
     cd backend
     node server.js
     Der Backend-Server läuft auf http://localhost:5000
 
-## Frontend starten
+### Frontend starten
     cd frontend
     npm run dev
     Frontend läuft standardmäßig auf http://localhost:5173
