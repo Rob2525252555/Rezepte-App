@@ -3,6 +3,8 @@
 import { createSlice, createAsyncThunk, isPending, isFulfilled, isRejected } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const API = import.meta.env.VITE_API_URL;
+
 /**
  * Lädt alle Rezepte vom Backend
  * 
@@ -14,7 +16,7 @@ import axios from 'axios';
 export const fetchRecipes = createAsyncThunk(
   'recipes/fetchRecipes',
   async () => {
-    const response = await axios.get('http://localhost:5000/recipes');
+    const response = await axios.get(`${API}/recipes`);
     return response.data;
   }
 );
@@ -31,7 +33,7 @@ export const fetchRecipes = createAsyncThunk(
 export const addRecipe = createAsyncThunk(
   'recipes/addRecipe',
   async (newRecipe) => {
-    const response = await axios.post('http://localhost:5000/recipes', newRecipe);
+    const response = await axios.post(`${API}/recipes`, newRecipe);
     return response.data;
   }
 );
@@ -50,7 +52,7 @@ export const addRecipe = createAsyncThunk(
 export const updateRecipe = createAsyncThunk(
   'recipes/updateRecipe',
   async ({ id, updatedData }) => {
-    const response = await axios.put(`http://localhost:5000/recipes/${id}`, updatedData);
+    const response = await axios.put(`${API}/recipes/${id}`, updatedData);
     return response.data;
   }
 );
@@ -67,7 +69,7 @@ export const updateRecipe = createAsyncThunk(
 export const deleteRecipe = createAsyncThunk(
   'recipes/deleteRecipe',
   async (id) => {
-    await axios.delete(`http://localhost:5000/recipes/${id}`);
+    await axios.delete(`${API}/recipes/${id}`);
     return id;
   }
 );
