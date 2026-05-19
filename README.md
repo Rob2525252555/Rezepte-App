@@ -3,19 +3,33 @@
 Eine Full-Stack-Anwendung mit React, Node/Express und MongoDB.
 Rezepte können gespeichert, bearbeitet, gelöscht und als Favorit markiert werden.
 
+## Hinweis zur Live-Demo
+
+Das Backend läuft auf dem kostenlosen Render-Plan.
+
+Beim ersten Aufruf kann das Laden der Daten einige Sekunden dauern, da sich der Server zunächst noch im Sleep-Modus befindet.
+
+## Live Demo
+
+https://rezepte-app-delta.vercel.app
+
+## Backend API
+
+https://rezepte-app-wpyo.onrender.com
+
 ## Screenshots
 
-Rezeptliste
-![Rezeptliste](docs\screenshots\Rezeptliste.png)
+### Rezeptliste
+![Rezeptliste](docs/screenshots/Rezeptliste.png)
 
-Favoritenliste
-![Favoritenliste](docs\screenshots\Favoritenliste.png)
+### Favoritenliste
+![Favoritenliste](docs/screenshots/Favoritenliste.png)
 
-Detailansicht
-![Detailansicht](docs\screenshots\Detailansicht.png)
+### Detailansicht
+![Detailansicht](docs/screenshots/Detailansicht.png)
 
-Rezept hinzufügen
-![Rezept-hinzufuegen](docs\screenshots\Rezept-hinzufuegen.png)
+### Rezept hinzufügen
+![Rezept-hinzufuegen](docs/screenshots/Rezept-hinzufuegen.png)
 
 ## Features
 - Rezepte erstellen, bearbeiten, löschen
@@ -35,8 +49,12 @@ Rezept hinzufügen
 ### Backend
 - Node.js
 - Express
-- MongoDB
+- MongoDB Atlas
 - Mongoose
+
+### Deployment
+- Vercel (Frontend)
+- Render (Backend)
 
 ## Projektstruktur
 ```
@@ -63,9 +81,28 @@ Rezepte-App/
         ├── pages/
         └── redux/
 ```
-## Datenbank / MongoDB Atlas Hinweis
-*(Dieser Schritt kann übersprungen werden, falls bereits eine MongoDB-URI vorhanden ist. Bei "Installation und Start" fortfahren!)* 
-- Damit die App funktioniert, muss jeder Nutzer einen eigenen MongoDB Atlas Account erstellen.
+## Datenbank / MongoDB Atlas 
+
+Dieses Projekt nutzt MongoDB Atlas als Cloud-Datenbank und ist bereits vollständig konfiguriert und deployed.
+
+Für die Nutzung der Live-Version ist keine Datenbank-Konfiguration erforderlich.
+
+## Mögliche Erweiterungen
+
+Das Projekt ist vollständig funktionsfähig und bewusst modular aufgebaut, sodass es zukünftige leicht erweitert werden kann.
+
+
+Mögliche Verbesserungen und Erweiterungen:
+- Benutzer-Authentifizierung (Login)
+- Rezeptbilder (Cloud-Speicherung)
+- Bewertungssystem für Rezepte
+- Mehrbenutzer-System (Rezepte teilen)
+
+
+## Für Entwickler (lokale Ausführung)
+
+Für die lokale Nutzung muss eine MongoDB Atlas Datenbank eingerichtet werden.
+
 ### In MongoDB Atlas:
 
 1. Projekt erstellen
@@ -76,7 +113,7 @@ Rezepte-App/
 
 4. Das Passwort dieses Benutzers kopieren.
 
-5. Die eigene MongoDB-URI in die .env Datei eintragen (basierend auf .env.example):
+5. Die eigene MongoDB-URI in die .env Datei eintragen (basierend auf .env.example im Ordner "backend"):
 
 ### MongoDB-URI:
 
@@ -90,17 +127,17 @@ Rezepte-App/
 
 5. Dort sehen Sie die URI in etwa so:
 
-mongodb+srv://username:password@clustername.mongodb.net/dbname?retryWrites=true&w=majority&appName=yourapp
+    mongodb+srv://username:password@clustername.mongodb.net/dbname?retryWrites=true&w=majority&appName=yourapp
 
-`username` → der Name des Datenbankbenutzers, den Sie in Atlas angelegt haben
+    `username` → der Name des Datenbankbenutzers, den Sie in Atlas angelegt haben
 
-`password` → das Passwort, das Sie dem Benutzer bei der Anlage gegeben haben
+    `password` → das Passwort, das Sie dem Benutzer bei der Anlage gegeben haben
 
-`clustername` → der Name Ihres Clusters
+    `clustername` → der Name Ihres Clusters
 
-`dbname` → Name Ihrer Datenbank 
+    `dbname` → Name Ihrer Datenbank 
 
-`yourapp` → name Ihrer App
+    `yourapp` → name Ihrer App
 
 
 ### Datenbank-Benutzer anlegen
@@ -136,32 +173,45 @@ Node.js >= 18 empfohlen
 
 ### Projekt herunterladen:
 
-git clone git@github.com:Rob2525252555/Rezepte-App.git
+git clone https://github.com/Rob2525252555/Rezepte-App.git
 
-### .env erstellen
+### Umgebungsvariablen Backend
 
-Im Ordner "backend" die Datei ".env" erstellen basierend auf ".env.example"
+Im Ordner "backend" die Datei ".env" erstellen basierend auf ".env.example":
+
+MONGO_URI=your-mongodb-uri-here
+
+PORT=5000
+
+### Umgebungsvariablen Frontend
+
+Im Ordner "frontend" die Datei ".env" erstellen basierend auf ".env.example":
+
+VITE_API_URL=http://localhost:5000
 
 ### Dependencies installieren:
 
-    Backend:
-    cd Rezepte-App
-    cd backend
-    npm install
+```
+Backend:
+cd backend
+npm install
 
-    Frontend:
-    cd Rezepte-App
-    cd frontend
-    npm install
-
+Frontend:
+cd frontend
+npm install
+```
 ### Backend starten
-    cd backend
-    node server.js
-    Der Backend-Server läuft auf http://localhost:5000
+```    
+cd backend
+node server.js
 
+Der Backend-Server läuft auf http://localhost:5000
+```
 ### Frontend starten
-    cd frontend
-    npm run dev
-    Frontend läuft standardmäßig auf http://localhost:5173
+```
+cd frontend
+npm run dev
 
+Frontend läuft standardmäßig auf http://localhost:5173
+```
 
