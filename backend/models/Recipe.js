@@ -51,6 +51,6 @@ const recipeSchema = new mongoose.Schema(
  * Stellt die Schnittstelle zur MongoDB-Collection `recipes` dar
  * und ermöglicht CRUD-Operationen auf Rezept-Dokumenten.
  */
-const Recipe = mongoose.model('Recipe', recipeSchema);
+const Recipe = mongoose.model('Recipe', recipeSchema, 'recipes');
 
 export default Recipe;
